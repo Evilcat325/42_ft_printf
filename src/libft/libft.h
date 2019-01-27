@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:52:07 by seli              #+#    #+#             */
-/*   Updated: 2019/01/20 22:49:35 by seli             ###   ########.fr       */
+/*   Updated: 2019/01/27 02:48:50 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+
+# define TRUE 1
+# define FALSE 0
 
 typedef struct		s_list
 {
@@ -88,5 +91,9 @@ int					ft_abs(int n);
 void				ft_lstadd_back(t_list **alst, t_list *new);
 size_t				ft_lstlen(t_list *alst);
 void				ft_lstrev(t_list **alst);
+char				*ft_strjoin_free(char *s1, char *s2,
+								int free_s1, int free_s2);
+char				*ft_ltoa(long n);
+char				*ft_dtoa(long double n, int percision);
 
 #endif
