@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:52:07 by seli              #+#    #+#             */
-/*   Updated: 2019/01/27 02:54:19 by seli             ###   ########.fr       */
+/*   Updated: 2019/01/27 03:42:58 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,14 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_isspace(int c);
-int					ft_abs(int n);
+long long			ft_abs(long long n);
 void				ft_lstadd_back(t_list **alst, t_list *new);
 size_t				ft_lstlen(t_list *alst);
 void				ft_lstrev(t_list **alst);
 char				*ft_strjoin_free(char *s1, char *s2,
 								int free_s1, int free_s2);
-char				*ft_ltoa(long n);
+char				*ft_ltoa(long long n);
+char				*ft_ltoa_base(long long n, char *base);
 char				*ft_dtoa(long double n, int percision);
 size_t				ft_strlen_end(char *str, char end);
 void				ft_putstr_fd_end(int fd, char **str, char end);

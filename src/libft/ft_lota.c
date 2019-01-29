@@ -6,23 +6,21 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:47:10 by seli              #+#    #+#             */
-/*   Updated: 2019/01/27 02:47:24 by seli             ###   ########.fr       */
+/*   Updated: 2019/01/28 15:27:59 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ltoa(long n)
+char	*ft_ltoa(long long n)
 {
-	long	nbr;
-	long	d;
-	size_t	i;
-	char	*str;
+	long long	d;
+	size_t		i;
+	char		*str;
 
-	nbr = n < 0 ? -(n + 1) : n;
 	d = 1;
 	i = 1;
-	while (nbr / d >= 10)
+	while (ft_abs(n / 10) >= d)
 	{
 		d *= 10;
 		i++;
@@ -34,8 +32,7 @@ char	*ft_ltoa(long n)
 		str[i++] = '-';
 	while (d != 0)
 	{
-		str[i++] = nbr / d % 10 + '0'
-			+ (d == 1 && n < 0 && n - 1 > 0 ? 1 : 0);
+		str[i++] = ft_abs((n / d) % 10) + '0';
 		d /= 10;
 	}
 	return (str);
