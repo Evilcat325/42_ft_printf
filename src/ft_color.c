@@ -19,16 +19,7 @@
 #define SHELL_COLOR_ESCAPE_SEQ(X) "\x1b["X"m"
 #define SHELL_FORMAT_RESET  ANSI_COLOR_ESCAPE_SEQ(GEN_FORMAT_RESET)
 
-// int main(int argc, char* argv[])
-// {
-//     //The long way
-//     fputs(SHELL_COLOR_ESCAPE_SEQ(GEN_FORMAT_DIM";"FOREGROUND_COL_YELLOW), stdout);
-//     fputs("Text in gold\n", stdout);
-//     fputs(SHELL_FORMAT_RESET, stdout);
-//     fputs("Text in default color\n", stdout);
-
-//     //The short way
-//     fputs(SHELL_COLOR_ESCAPE_SEQ(GEN_FORMAT_DIM";"FOREGROUND_COL_YELLOW)"Text in gold\n"SHELL_FORMAT_RESET"Text in default color\n", stdout);
-
-//     return 0;
-// }
+char *color(char *str)
+{
+	return SHELL_COLOR_ESCAPE_SEQ(BACKGROUND_COL_BLACK);
+}

@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/10 13:23:55 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/10 14:35:27 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_check_length_specifiers(t_fmt *fmt)
 		fmt->err = ERR_INVALID_LENGTH_WITH_SPECIFIER;
 }
 
-char	*ft_fmt_doulbe(t_fmt *fmt, long double n)
+char	*ft_fmt_double(t_fmt *fmt, long double n)
 {
 	char		*result;
 
@@ -57,9 +57,9 @@ char	*ft_fmt_int(t_fmt *fmt, long long n)
 	else if (fmt->specifier == 'u')
 		result = ft_ltoa_base(nbr, 10);
 	else if (fmt->specifier == 'x' || fmt->specifier == 'X')
-		result = ft_lota_base(nbr, 16);
+		result = ft_ltoa_base(nbr, 16);
 	else if (fmt->specifier == 'b' || fmt->specifier == 'B')
-		result = ft_lota_base(nbr, 2);
+		result = ft_ltoa_base(nbr, 2);
 	if (fmt->specifier == 'c')
 	{
 		result = ft_strnew(1);
@@ -76,7 +76,7 @@ char	*ft_fmt_ptr(t_fmt *fmt, void *ptr)
 		result = (char *)ptr;
 	else if (fmt->specifier == 'p')
 		result = ft_strjoin_free("0x",
-			ft_lota_base((unsigned long long)ptr, 16), FALSE, TRUE);
+			ft_ltoa_base((unsigned long long)ptr, 16), FALSE, TRUE);
 	return (result);
 	}
 

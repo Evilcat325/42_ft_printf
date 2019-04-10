@@ -6,7 +6,7 @@
 #    By: seli <seli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/10 13:09:56 by seli              #+#    #+#              #
-#    Updated: 2019/04/10 14:31:13 by seli             ###   ########.fr        #
+#    Updated: 2019/04/10 14:34:42 by seli             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME): object
 	@cp $(LIBFT)/$(LIBFT).a ./$(NAME)
 	@ar -rcs $(NAME) $(OBJECTS)
 
-object: $(OBJECTS)
+object: $(SOURCES)
 	@mkdir -p obj
 	@$(CC) $(FLAGS) -I$(HEADER) -I$(LIBFT_HEADER) -c $(SOURCES)
 	@mv *.o obj
