@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/01/28 22:51:12 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/10 13:23:55 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_fmt_ptr(t_fmt *fmt, void *ptr)
 	return (result);
 	}
 
-char	*ft_fmt_position(t_fmt *fmt, char *str)
+char	*ft_fmt_width(t_fmt *fmt, char *str)
 {
 	char *result;
 	char *padding;
@@ -111,27 +111,25 @@ char	*ft_fmt2str(char **str, t_fmt *fmt, va_list args)
 	if (!fmt->err && fmt->length)
 		ft_check_length_specifiers(fmt);
 	if (fmt->err)
-		return (FALSE);
+		return (NULL);
 	if (ft_strchr(DOUBLE_SPECIFIER, fmt->specifier))
 		result = ft_fmt_double(fmt, va_arg(args, long double));
 	else if (ft_strchr(INT_SPECIFIER, fmt->specifier))
 		result = ft_fmt_int(fmt, va_arg(args, long long));
 	else if (ft_strchr(PTR_SPECIFIER, fmt->specifier))
 		result = ft_fmt_ptr(fmt, va_arg(args, void *));
-	result = ft_fmt_position(fmt, result);
+	result = ft_fmt_width(fmt, result);
 	return (result);
 }
 
-void	ft_dprintf(int fd, const char *str, ...)
+void	ft_dprintf(int fd, const char *str, va_list args)
 {
 	char	*head;
 	t_fmt	fmt;
-	va_list	args;
 	char	*result;
 
 	if (!str)
 		return ;
-	va_start(args, str);
 	head = (char *)str;
 	while (*head)
 	{
@@ -139,7 +137,7 @@ void	ft_dprintf(int fd, const char *str, ...)
 		ft_putstr_fd_end(fd, &head, '%');
 		if ((result = ft_fmt2str(&head, &fmt, args)))
 		{
-			ft_putstr_fd(result, 1);
+			ft_putstr_fd(result, fd);
 			free(result);
 		}
 		else
@@ -149,4 +147,12 @@ void	ft_dprintf(int fd, const char *str, ...)
 		}
 	}
 	va_end(args);
+}
+
+void ft_printf(const char *str, ...)
+{
+	va_list	args;
+
+	va_start(args, str);
+	ft_dprintf(STDOUT_FILENO, str, args);
 }

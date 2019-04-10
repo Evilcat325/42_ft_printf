@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/03/02 01:02:20 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/10 13:26:10 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	ft_read_length(char **str, t_fmt *fmt)
 		fmt->length = (**str == 'h' ? LENGTH_H : fmt->length);
 		fmt->length = (**str == 'l' ? LENGTH_L : fmt->length);
 		fmt->length = (**str == 'L' ? LENGTH_LD : fmt->length);
-		(*str++);
+		(*str)++;
 	}
 	if (ft_strchr("hl", **str))
 	{
 		fmt->length = (**str == 'h' ? LENGTH_HH : fmt->length);
 		fmt->length = (**str == 'l' ? LENGTH_LL : fmt->length);
-		(*str++);
+		(*str)++;
 	}
 }
 
