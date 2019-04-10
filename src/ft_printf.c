@@ -78,6 +78,25 @@ char	*ft_fmt_ptr(t_fmt *fmt, void *ptr)
 		result = ft_strjoin_free("0x",
 			ft_lota_base((unsigned long long)ptr, 16), FALSE, TRUE);
 	return (result);
+	}
+
+char	*ft_fmt_position(t_fmt *fmt, char *str)
+{
+	char *result;
+	char *padding;
+	int len;
+
+	len = ft_strlen(str);
+	if (fmt->width <= len)
+		return str;
+	padding = ft_strnew(fmt->width - len);
+	while (fmt->width - len--)
+		padding[fmt->width - len] = fmt->flags & FLAG_ZERO ? '0' : ' ';
+	if (fmt->flags & FLAG_NEGATIVE_SIGN)
+		result = ft_strjoin_free(str, padding, TRUE, TRUE);
+	else
+		result = ft_strjoin_free(padding, str, TRUE, TRUE);
+	return result;
 }
 
 char	*ft_fmt2str(char **str, t_fmt *fmt, va_list args)

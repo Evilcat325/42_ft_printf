@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/01/27 02:59:22 by seli             ###   ########.fr       */
+/*   Updated: 2019/03/02 01:02:20 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_read_flags(char **str, t_fmt *fmt)
 {
 	while (ft_strchr("+- #0", **str))
 	{
-		fmt->flags |= (**str == '+' ? FLAG_NEGATIVE_SIGN : 0);
+		fmt->flags |= (**str == '-' ? FLAG_NEGATIVE_SIGN : 0);
 		fmt->flags |= (**str == '+' ? FLAG_PLUS_SIGN : 0);
-		fmt->flags |= (**str == '+' ? FLAG_SPACE : 0);
-		fmt->flags |= (**str == '+' ? FLAG_HASHTAG : 0);
-		fmt->flags |= (**str == '+' ? FLAG_ZERO : 0);
+		fmt->flags |= (**str == ' ' ? FLAG_SPACE : 0);
+		fmt->flags |= (**str == '#' ? FLAG_HASHTAG : 0);
+		fmt->flags |= (**str == '0' ? FLAG_ZERO : 0);
 		fmt->flags |= (**str == '\'' ? FLAG_AOISTRIOHE : 0);
 		(*str)++;
 	}
