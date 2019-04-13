@@ -6,7 +6,7 @@
 #    By: seli <seli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/19 17:52:05 by seli              #+#    #+#              #
-#    Updated: 2019/04/10 14:02:28 by seli             ###   ########.fr        #
+#    Updated: 2019/04/13 14:19:49 by seli             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SOURCES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 		ft_lstadd.c ft_lstiter.c ft_lstmap.c \
 		ft_isspace.c ft_abs.c ft_lstadd_back.c ft_lstlen.c ft_lstrev.c \
-		ft_strjoin_free.c ft_strlen_end.c ft_ltoa_base.c ft_putstr_fd_end.c
+		ft_strjoin_free.c ft_strlen_end.c ft_ltoa_base.c ft_putstr_fd_end.c \
+		ft_dtoa.c ft_ltoa.c
 OBJECTS := $(SOURCES:%.c=%.o)
 
 all: $(NAME)

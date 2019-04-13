@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:48:04 by seli              #+#    #+#             */
-/*   Updated: 2019/01/27 02:48:52 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/13 14:22:40 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ char	*ft_dtoa(long double n, int percision)
 		}
 		result = ft_strjoin_free(result, dec, TRUE, TRUE);
 	}
+	return result;
 }
