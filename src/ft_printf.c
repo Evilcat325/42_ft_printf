@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/10 14:35:27 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/15 01:10:40 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_fmt_ptr(t_fmt *fmt, void *ptr)
 	char	*result;
 
 	if (fmt->specifier == 's')
-		result = (char *)ptr;
+		result = ft_strdup((char *)ptr);
 	else if (fmt->specifier == 'p')
 		result = ft_strjoin_free("0x",
 			ft_ltoa_base((unsigned long long)ptr, 16), FALSE, TRUE);
@@ -103,6 +103,7 @@ char	*ft_fmt2str(char **str, t_fmt *fmt, va_list args)
 {
 	char	*result;
 
+	(*str)++;
 	ft_read_flags(str, fmt);
 	ft_read_width(str, fmt, args);
 	ft_read_precision(str, fmt, args);
@@ -118,6 +119,11 @@ char	*ft_fmt2str(char **str, t_fmt *fmt, va_list args)
 		result = ft_fmt_int(fmt, va_arg(args, long long));
 	else if (ft_strchr(PTR_SPECIFIER, fmt->specifier))
 		result = ft_fmt_ptr(fmt, va_arg(args, void *));
+	else if (fmt->specifier == '%')
+	{
+		result = ft_strnew(1);
+		result[0] = '%';
+	}
 	result = ft_fmt_width(fmt, result);
 	return (result);
 }
@@ -133,8 +139,10 @@ void	ft_dprintf(int fd, const char *str, va_list args)
 	head = (char *)str;
 	while (*head)
 	{
-		ft_bzero(&fmt, sizeof(fmt));
 		ft_putstr_fd_end(fd, &head, '%');
+		if (!*head)
+			break;
+		ft_bzero(&fmt, sizeof(fmt));
 		if ((result = ft_fmt2str(&head, &fmt, args)))
 		{
 			ft_putstr_fd(result, fd);

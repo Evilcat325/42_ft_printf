@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/04/10 13:26:10 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/15 00:53:15 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_read_length(char **str, t_fmt *fmt)
 void	ft_read_specifiers(char **str, t_fmt *fmt)
 {
 	if (ft_strchr(SPECIFIER, **str))
-		fmt->specifier = *(*str++);
+		fmt->specifier = *(*str)++;
 	else
 		fmt->err = ERR_INVALID_SPECIFIER;
 }

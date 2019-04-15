@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:53:47 by seli              #+#    #+#             */
-/*   Updated: 2019/04/10 13:59:56 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/15 01:09:15 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #define LENGTH_LL 0xFFFFFFFFFFFFFFFF
 #define LENGTH_LD 5
 
-#define SPECIFIER "diuoxXfegcsp"
+#define SPECIFIER "diuoxXfegcsp%"
 #define DOUBLE_SPECIFIER "feg"
 #define INT_SPECIFIER "diuoxXc"
 #define PTR_SPECIFIER "sp"
@@ -58,5 +58,6 @@ void ft_read_width(char **str, t_fmt *fmt, va_list arg);
 void ft_read_precision(char **str, t_fmt *fmt, va_list arg);
 void ft_read_length(char **str, t_fmt *fmt);
 void ft_read_specifiers(char **str, t_fmt *fmt);
+void ft_printf(const char *str, ...);
 
 #endif
