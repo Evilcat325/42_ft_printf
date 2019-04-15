@@ -6,3 +6,4 @@ ft_printf
 obj
 .vscode
 *.a
+*.o
