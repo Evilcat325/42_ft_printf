@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/15 01:10:40 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/15 01:23:33 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,17 +128,20 @@ char	*ft_fmt2str(char **str, t_fmt *fmt, va_list args)
 	return (result);
 }
 
-void	ft_dprintf(int fd, const char *str, va_list args)
+int	ft_dprintf(int fd, const char *str, va_list args)
 {
 	char	*head;
 	t_fmt	fmt;
 	char	*result;
+	int		len;
 
+	len = 0;
 	if (!str)
-		return ;
+		return len;
 	head = (char *)str;
 	while (*head)
 	{
+		len += ft_strlen_end(head, '%');
 		ft_putstr_fd_end(fd, &head, '%');
 		if (!*head)
 			break;
@@ -146,21 +149,23 @@ void	ft_dprintf(int fd, const char *str, va_list args)
 		if ((result = ft_fmt2str(&head, &fmt, args)))
 		{
 			ft_putstr_fd(result, fd);
+			len += ft_strlen(result);
 			free(result);
 		}
 		else
 		{
 			ft_putstr_fd("Invalid format\n", fd);
-			break ;
+			return -1;
 		}
 	}
 	va_end(args);
+	return len;
 }
 
-void ft_printf(const char *str, ...)
+int ft_printf(const char *str, ...)
 {
 	va_list	args;
 
 	va_start(args, str);
-	ft_dprintf(STDOUT_FILENO, str, args);
+	return ft_dprintf(STDOUT_FILENO, str, args);
 }

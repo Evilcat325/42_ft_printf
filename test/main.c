@@ -1,5 +1,10 @@
+#include <stdio.h>
 #include "ft_printf.h"
 #include "libft.h"
+
+#define TEST(x) ret = ft_printf(x); printf("%d\n", ret)
+#define TEST2(x, y) ret = ft_printf(x, y); printf("%d\n", ret)
+
 
 int main()
 {
@@ -7,14 +12,15 @@ int main()
 	double d = 5.123456781234567;
 	float f = 5.1234567;
 	int i = 5;
+	int ret = 0;
 
-	ft_printf("");
-	ft_printf("%%");
-	ft_printf("test \n");
-	ft_printf("test %c\n", 'c');
-	ft_printf("test %p\n", ptr);
-	ft_printf("test %s\n", "a string");
-	ft_printf("test %d\n", d);
-	ft_printf("test %i\n", i);
+	TEST("");
+	TEST("%%");
+	TEST("test \n");
+	TEST2("test %c\n", 'c');
+	TEST2("test %p\n", ptr);
+	TEST2("test %s\n", "a string");
+	TEST2("test %d\n", d);
+	TEST2("test %i\n", i);
 	return 0;
 }
