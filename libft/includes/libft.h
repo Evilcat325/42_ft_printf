@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:52:07 by seli              #+#    #+#             */
-/*   Updated: 2019/04/10 13:42:34 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/15 13:59:07 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ char				*ft_ltoa_base(unsigned long long n, int base);
 char				*ft_dtoa(long double n, int percision);
 size_t				ft_strlen_end(char *str, char end);
 void				ft_putstr_fd_end(int fd, char **str, char end);
+void				ft_to_upper(char *str);
 
 #endif

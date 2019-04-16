@@ -14,13 +14,16 @@ int main()
 	int i = 5;
 	int ret = 0;
 
-	TEST("");
-	TEST("%%");
-	TEST("test \n");
-	TEST2("test %c\n", 'c');
-	TEST2("test %p\n", ptr);
-	TEST2("test %s\n", "a string");
-	TEST2("test %d\n", d);
-	TEST2("test %i\n", i);
+	// TEST("");
+	// TEST("%%");
+	// TEST("test \n");
+	// TEST2("test %c\n", 'c');
+	// TEST2("test %p\n", ptr);
+	// TEST2("test %s\n", "a string");
+	// TEST2("test %d\n", d);
+	// TEST2("test %i\n", i);
+	ft_printf("%#x\n", 42);
+	ft_printf("%#x\n", 42);
+	ft_printf("%s", "abc");
 	return 0;
 }

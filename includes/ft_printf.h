@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:53:47 by seli              #+#    #+#             */
-/*   Updated: 2019/04/15 01:24:52 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/15 21:31:21 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,47 +17,50 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stddef.h>
 #include "libft.h"
-
-#define FLAG_NEGATIVE_SIGN 1 << 0
-#define FLAG_PLUS_SIGN 1 << 1
-#define FLAG_SPACE 1 << 2
-#define FLAG_HASHTAG 1 << 3
-#define FLAG_ZERO 1 << 4
-#define FLAG_AOISTRIOHE 1 << 5
-
-#define LENGTH_HH 0x00000000000000FF
-#define LENGTH_H 0x000000000000FFFF
-#define LENGTH_L 0xFFFFFFFFFFFFFFFF
-#define LENGTH_LL 0xFFFFFFFFFFFFFFFF
-#define LENGTH_LD 5
-
-#define SPECIFIER "diuoxXfegcsp%"
-#define DOUBLE_SPECIFIER "feg"
-#define INT_SPECIFIER "diuoxXc"
-#define PTR_SPECIFIER "sp"
-
-#define ERR_INVALID_SPECIFIER 1
-#define ERR_INVALID_LENGTH_WITH_SPECIFIER 2
 
 #define TRUE 1
 #define FALSE 0
 
-typedef struct s_fmt
-{
-	int flags;
-	int width;
-	int percision;
-	unsigned long length;
-	char specifier;
-	int err;
-} t_fmt;
+#define ERR_INVALID_SPECIFIER "Invalid Specifier"
+#define ERR_INVALID_SPECIFIER_LENGTH "Invalid Specifier Length"
 
-void ft_read_flags(char **str, t_fmt *fmt);
-void ft_read_width(char **str, t_fmt *fmt, va_list arg);
-void ft_read_precision(char **str, t_fmt *fmt, va_list arg);
-void ft_read_length(char **str, t_fmt *fmt);
-void ft_read_specifiers(char **str, t_fmt *fmt);
-int ft_printf(const char *str, ...);
+typedef struct		s_fmt
+{
+	int				left_justify;
+	int				force_sign;
+	int				force_space;
+	int				force_zero;
+	int				force_decimal;
+	int				left_pad_zero;
+	int				width;
+	int				percision;
+	int				current_len;
+	char			length;
+	char			specifier;
+	char			*err;
+	va_list			*args;
+}					t_fmt;
+
+typedef char * formater(t_fmt *fmt);
+
+int		ft_is_flag(char c);
+int		ft_is_length(char c);
+int		ft_is_two_chars_length(char c);
+int		ft_is_specifiers(char c);
+void	ft_parse_flags(char **str, t_fmt *fmt);
+void	ft_parse_width(char **str, t_fmt *fmt);
+void	ft_parse_precision(char **str, t_fmt *fmt);
+void	ft_parse_length(char **str, t_fmt *fmt);
+void	ft_parse_specifiers(char **str, t_fmt *fmt);
+
+int		ft_is_signed_int_specifier(char c);
+int		ft_is_unsigned_int_specifier(char c);
+int		ft_is_int_specifier(char c);
+int		ft_is_float_specifier(char c);
+int		ft_is_string_specifier(char c);
+int		ft_is_other_specifier(char c);
+int		ft_is_ptr_specifier(char c);
 
 #endif
