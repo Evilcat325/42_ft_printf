@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:52:07 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 01:34:26 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 02:01:02 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ char				*ft_dtoa(long double n, int percision);
 size_t				ft_strlen_end(char *str, char end);
 size_t				ft_putstr_fd_end(char **str, const int fd, char end);
 void				ft_to_upper(char *str);
+char				*ft_format_sci(int e);
 
 #endif
