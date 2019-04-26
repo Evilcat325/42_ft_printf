@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/25 21:33:05 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 00:15:03 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #define FT_STRUCT_H
 
 #include <stdarg.h>
-#include "ft_struct.h"
+#include <stddef.h>
+#include <wchar.h>
+#include <stdint.h>
 
 typedef struct		s_flags
 {
@@ -24,26 +26,51 @@ typedef struct		s_flags
 	unsigned int	is_force_alt : 1;
 	unsigned int	is_left_pad_zero : 1;
 	unsigned int	is_uppercase : 1;
-}					t_flags;
+}					t_flags_t;
+
+typedef enum		e_length
+{
+	NONE,
+	hh,
+	h,
+	l,
+	ll,
+	j,
+	z,
+	t,
+	L
+}					t_length_t;
+
+typedef union		u_input
+{
+	intmax_t		i;
+	uintmax_t		u;
+	double			f;
+	void			*p;
+}					t_input_t;
 
 typedef struct		s_fmt
 {
-	t_flags			flags;
-	int				width;
-	int				percision;
-	char			length;
+	t_flags_t		flags;
+	unsigned int	width;
+	unsigned int	percision;
+	t_length_t		length;
 	char			specifier;
 	char			*err;
-	va_list			*args;
-}					t_fmt;
+	t_input_t		input;
+}					t_fmt_t;
 
 typedef struct		s_state
 {
-	t_fmt			fmt;
-	int				current_len;
-}					t_state;
+	t_fmt_t			fmt;
+	char			*head;
+	char			*curr;
+	size_t			len;
+	va_list			*args;
+}					t_state_t;
 
-typedef char (*formater)(t_state *state);
+typedef char		(*t_formatter_t)(t_state_t *s);
+typedef int			(*t_inputter_t)(t_state_t *s);
 
 #define TRUE 1
 #define FALSE 0
