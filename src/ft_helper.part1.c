@@ -6,46 +6,46 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 19:11:21 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/25 20:47:22 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/25 23:02:40 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_helper.h"
 
-int		ft_is_flag(char c)
+int				ft_is_flag(char c)
 {
 	return (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0');
 }
 
-int		ft_is_length(char c)
+t_length_t		ft_is_length(char c)
 {
 	if (c == 'h')
-		return 2;
+		return h;
 	else if (c == 'l')
-		return 3;
+		return l;
 	else if (c == 'j')
-		return 5;
+		return j;
 	else if (c == 'z')
-		return 6;
+		return z;
 	else if (c == 't')
-		return 7;
+		return t;
 	else if (c == 'L')
-		return 8;
+		return L;
 	else
-		return FALSE;
+		return NONE;
 }
 
-int		ft_is_two_chars_length(char c)
+t_length_t			ft_is_two_chars_length(char c)
 {
 	if (c == 'h')
-		return 1;
+		return hh;
 	else if (c == 'l')
-		return 4;
+		return ll;
 	else
-		return FALSE;
+		return NONE;
 }
 
-int		ft_is_specifiers(char c)
+int				ft_is_specifiers(char c)
 {
 	return (c == 'd' || c == 'i' || c == 'u' || c == 'o' || c == 'x' || c == 'X'
 		|| c == 'f' || c == 'F' || c == 'e' || c == 'E' || c == 'g' || c == "G"
