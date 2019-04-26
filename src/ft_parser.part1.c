@@ -6,53 +6,52 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/04/25 21:38:08 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/25 23:01:16 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-void	ft_parse_flags(char **str, t_flags *flags)
+void	ft_parse_flags(t_state_t *s)
 {
-	while (ft_is_flag(*str))
-	{
-		if (*str == '-')
-			flags->is_force_sign= TRUE;
-		else if (*str == '+')
-			flags->is_force_sign = TRUE;
-		else if (*str == ' ')
-			flags->is_force_space = TRUE;
-		else if (*str == '#')
-			flags->is_force_alt = TRUE;
-		else if (*str == '0')
-			flags->is_left_pad_zero = TRUE;
-		(*str)++;
-	}
+	char c;
+
+	while (ft_is_flag(c = *s->curr) && s->curr++)
+		if (c == '-')
+			s->fmt.flags.is_force_sign= TRUE;
+		else if (c == '+')
+			s->fmt.flags.is_force_sign = TRUE;
+		else if (c == ' ')
+			s->fmt.flags.is_force_space = TRUE;
+		else if (c == '#')
+			s->fmt.flags.is_force_alt = TRUE;
+		else if (c == '0')
+			s->fmt.flags.is_left_pad_zero = TRUE;
 }
 
-static void	ft_parse_number(char **str, t_fmt *fmt, int *dst)
+static void	ft_parse_number(t_state_t *s, int *dst)
 {
-	if (**str == '*')
+	if (*s->curr == '*')
 	{
-		*dst = va_arg(*(fmt->args), int);
-		(*str)++;
-	} else if (!ft_isdigit(**str))
+		*dst = va_arg(*s->args, unsigned int);
+		s->curr++;
+	} else if (!ft_isdigit(*s->curr))
 		return ;
 	else
-		while (ft_isdigit(**str))
-			*dst = *dst * 10 + *(*str)++ - '0';
+		while (ft_isdigit(*s->curr))
+			*dst = *dst * 10 + *s->curr++ - '0';
 }
 
-void	ft_parse_width(char **str, t_fmt *fmt)
+void	ft_parse_width(t_state_t *s)
 {
-	ft_parse_number(str, fmt, &fmt->width);
+	ft_parse_number(s, &s->fmt.width);
 }
 
-void	ft_parse_precision(char **str, t_fmt *fmt)
+void	ft_parse_precision(t_state_t *s)
 {
-	fmt->percision = -1;
-	if (*(*str)++ != '.')
+	s->fmt.percision = -1;
+	if (*(s->curr)++ != '.')
 		return;
-	ft_parse_number(str, fmt, &fmt->percision);
+	ft_parse_number(s, &s->fmt.percision);
 }
 
