@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 00:15:03 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 01:37:53 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef union		u_input
 {
 	intmax_t		i;
 	uintmax_t		u;
-	double			f;
+	long double		f;
 	void			*p;
 }					t_input_t;
 
