@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 01:37:53 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 03:50:09 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_fmt
 	char			specifier;
 	char			*err;
 	t_input_t		input;
+	size_t			len;
 }					t_fmt_t;
 
 typedef struct		s_state

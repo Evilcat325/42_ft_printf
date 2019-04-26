@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:04:36 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 00:19:24 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 02:34:23 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_format(t_state_t *s)
 {
 	void			*func;
 	char			*result;
+	size_t			len;
 
 	if((func = ft_get_inputter(s->fmt.specifier)) == NULL)
 		return (NULL);
@@ -23,6 +24,7 @@ char	*ft_format(t_state_t *s)
 	if((func = ft_get_formatter(s->fmt.specifier)) == NULL)
 		return (NULL);
 	result = ((t_formatter_t)func);
+	len = ft_strlen(result);
 }
 
 // char	*ft_fmt_t_double(t_fmt_t *fmt, long double n)

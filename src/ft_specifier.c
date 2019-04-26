@@ -6,58 +6,106 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 14:50:19 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 02:32:29 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 03:09: by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_specifier.h"
 #define ft_spec_i ft_spec_d
 
+char *ft_pad_left_zero(t_state_t *s, char *str)
+{
+	size_t	len;
+	char	*result;
+	char	*head;
+
+	len = ft_strlen(str);
+	head = result = ft_strnew(s->fmt.percision - len);
+	while (*head)
+		*head = '0';
+	return ft_strjoin_free(result, str, TRUE, TRUE);
+}
+
+char *ft_pad_wid(t_state_t *s, char *str)
+{
+	size_t	len;
+	char	*result;
+	char	*head;
+	char	fill;
+
+	len = ft_strlen(str);
+	head = result = ft_strnew(s->fmt.width - len);
+	fill = s->fmt.flags.is_left_pad_zero ? '0': ' ';
+	while (*head)
+		*head = fill;
+	if (s->fmt.flags.is_left_justify)
+		return ft_strjoin_free(str, result, TRUE, TRUE);
+	else
+		return ft_strjoin_free(result, str, TRUE, TRUE);
+}
+
 char *ft_spec_d(t_state_t *s)
 {
-	char *result;
+	char	*result;
 
+	if (s->fmt.input.i == 0 && s->fmt.percision == 0)
+		return ft_strdup("");
 	result = ft_itoa_max(s->fmt.input.i);
+	if (s->fmt.percision > 0 && ft_strlen(result) < s->fmt.percision)
+		result = ft_pad_left_zero(s, result);
+	if (s->fmt.input.i >= 0
+		&& (s->fmt.flags.is_force_sign || s->fmt.flags.is_force_space))
+		result = ft_strjoin_free(s->fmt.flags.is_force_sign ? "+" : " ",
+			result, FALSE, TRUE);
+	if (ft_strlen(result) < s->fmt.width)
+		result = ft_pad_wid(s, result);
+	return result;
+}
+
+char *ft_spec_unsigned(t_state_t *s, int base, char *alt)
+{
+	char	*result;
+
+	if (s->fmt.input.i == 0 && s->fmt.percision == 0)
+		result = ft_strdup("");
+	else
+		result = ft_ltoa_base(s->fmt.input.u, base);
+	if (s->fmt.percision > 0 && ft_strlen(result) < s->fmt.percision)
+		result = ft_pad_left_zero(s, result);
+	if (result[0] != '0' && s->fmt.flags.is_force_alt)
+		result = ft_strjoin_free("0", result, FALSE, TRUE);
+	if (ft_strlen(result) < s->fmt.width)
+		result = ft_pad_wid(s, result);
 	return result;
 }
 
 char *ft_spec_b(t_state_t *s)
 {
-	char *result;
-
-	result = ft_ltoa_base(s->fmt.input.u, 2);
-	return result;
+	return ft_spec_unsigned(s, 2, "0");
 }
 
 char *ft_spec_o(t_state_t *s)
 {
-	char *result;
-
-	result = ft_ltoa_base(s->fmt.input.u, 8);
-	return result;
+	return ft_spec_unsigned(s, 8, "0");
 }
 
 char *ft_spec_u(t_state_t *s)
 {
-	char *result;
-
-	result = ft_ltoa_base(s->fmt.input.u, 10);
-	return result;
+	return ft_spec_unsigned(s, 10, "");
 }
 
 char *ft_spec_x(t_state_t *s)
 {
-	char *result;
-
-	result = ft_lota_base(s->fmt.input.u, 16);
-	return result;
+	return ft_spec_unsigned(s, 16, "0x");
 }
 
 char *ft_spec_f(t_state_t *s)
 {
-	char *result;
+	char	*result;
 
 	result = ft_dtoa(s->fmt.input.f, s->fmt.percision);
+	if (ft_strlen(result) < s->fmt.width)
+		result = ft_pad_wid(s, result);
 	return result;
 }
 
@@ -83,6 +131,8 @@ char *ft_spec_e(t_state_t *s)
 	e = ft_get_exponent(s->fmt.input.f, &d);
 	result = ft_dtoa(d, s->fmt.percision);
 	result = ft_strjoin_free(result, ft_format_sci(e), TRUE, TRUE);
+	if (ft_strlen(result) < s->fmt.width)
+		result = ft_pad_wid(s, result);
 	return result;
 }
 
@@ -120,38 +170,44 @@ char *ft_spec_c(t_state_t *s)
 	char *result;
 
 	result = ft_strdup(&s->fmt.input.i);
+	s->fmt.len = 1;
+	if (s->fmt.width > 1)
+	{
+		result = ft_pad_wid(s, result);
+		s->fmt.len = s->fmt.width;
+	}
 	return result;
 }
 
 char *ft_spec_s(t_state_t *s)
 {
-	char *result;
+	char	*result;
+	size_t	len;
 
-	result = ft_strdup(s->fmt.input.p);
+	if ((len = ft_strlen(s->fmt.input.p)) && s->fmt.percision >= 0)
+		len = len >= s->fmt.percision ? s->fmt.percision : len;
+	result = ft_strncpy(ft_strnew(len), s->fmt.input.p, len);
+	if (ft_strlen(result) < s->fmt.width)
+		result = ft_pad_wid(s, result);
 	return result;
 }
 
 char *ft_spec_p(t_state_t *s)
 {
-	char *result;
-
-	result = ft_ltoa_base(s->fmt.input.p, 16);
-	return result;
+	s->fmt.flags.is_force_alt = TRUE;
+	return ft_spec_x(s);
 }
 
 char *ft_spec_n(t_state_t *s)
 {
-	char *result;
-
-	result = ft_itoa_max(s->len);
-	return result;
+	s->fmt.input.u = s->len;
+	return ft_spec_d(s);
 }
 
 char *ft_spec_z(t_state_t *s)
 {
-	char *result;
-
-	result = ft_strdup("%");
+	s->fmt.input.i = '%';
+	return ft_spec_c(s);
 }
 
 static t_formatter_t g_table[] = {
