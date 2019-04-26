@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_parser.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 15:53:47 by seli              #+#    #+#             */
-/*   Updated: 2019/04/25 20:50:18 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/25 20:06:43 by evilcat           #+#    #+#             */
+/*   Updated: 2019/04/25 21:38:20 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#ifndef FT_PARSER_H
+#define FT_PARSER_H
 
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stddef.h>
 #include "ft_struct.h"
-#include "libft.h"
+
+void	ft_parse_flags(char **str, t_flags *flag);
+void	ft_parse_width(char **str, t_fmt *fmt);
+void	ft_parse_precision(char **str, t_fmt *fmt);
+void	ft_parse_length(char **str, t_fmt *fmt);
+void	ft_parse_specifiers(char **str, t_fmt *fmt);
+void	ft_parse(char **str, t_fmt *fmt);
 
 #endif

@@ -3,51 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/15 21:17:01 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/25 21:38:51 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		ft_is_signed_int_specifier(char c)
-{
-	return (c == 'd' || c == 'i');
-}
-
-int		ft_is_unsigned_int_specifier(char c)
-{
-	return (c == 'o' || c == 'u' || c == 'x' || c == 'X'
-			|| c == 'b' || c == 'B');
-}
-
-int		ft_is_int_specifier(char c)
-{
-	return (ft_is_signed_int_specifier(c) || ft_is_unsigned_int_specifier(c));
-}
-
-int		ft_is_float_specifier(char c)
-{
-	return (c == 'f' || c == 'F' || c == 'e' || c == 'E'
-		|| c == 'g' || c == 'G' || c == 'a' || c == 'A');
-}
-
-int		ft_is_string_specifier(char c)
-{
-	return (c == 'c' || c == 's');
-}
-
-int		ft_is_other_specifier(char c)
-{
-	return (c == 'n');
-}
-
-int		ft_is_ptr_specifier(char c)
-{
-	return (c == 'p');
-}
 
 void	ft_check_invalid_length_specifiers(t_fmt *fmt)
 {

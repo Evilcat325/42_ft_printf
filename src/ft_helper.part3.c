@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_helper.part3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 15:53:47 by seli              #+#    #+#             */
-/*   Updated: 2019/04/25 20:50:18 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/25 21:39:32 by evilcat           #+#    #+#             */
+/*   Updated: 2019/04/25 21:39:43 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "ft_parser.h"
 
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stddef.h>
-#include "ft_struct.h"
-#include "libft.h"
+int		ft_is_string_specifier(char c)
+{
+	return (c == 'c' || c == 's');
+}
 
-#endif
+int		ft_is_other_specifier(char c)
+{
+	return (c == 'n');
+}
+
+int		ft_is_ptr_specifier(char c)
+{
+	return (c == 'p');
+}
