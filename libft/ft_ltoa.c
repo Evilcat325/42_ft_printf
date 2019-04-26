@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ltoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:47:10 by seli              #+#    #+#             */
-/*   Updated: 2019/04/13 14:19:45 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/26 01:34:46 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ltoa(long long n)
+char	*ft_ltoa(intmax_t n)
 {
-	long long	d;
+	intmax_t	d;
 	size_t		i;
 	char		*str;
 
