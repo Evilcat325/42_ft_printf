@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:52:07 by seli              #+#    #+#             */
-/*   Updated: 2019/04/15 13:59:07 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/25 22:31:05 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);
 void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char const *s, int fd);
+size_t				ft_putstr_fd(const char *str, const int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void const *content, size_t content_size);
@@ -97,7 +97,7 @@ char				*ft_ltoa(long long n);
 char				*ft_ltoa_base(unsigned long long n, int base);
 char				*ft_dtoa(long double n, int percision);
 size_t				ft_strlen_end(char *str, char end);
-void				ft_putstr_fd_end(int fd, char **str, char end);
+size_t				ft_putstr_fd_end(char **str, const int fd, char end);
 void				ft_to_upper(char *str);
 
 #endif

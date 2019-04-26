@@ -3,25 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 03:28:55 by seli              #+#    #+#             */
-/*   Updated: 2019/01/20 20:22:08 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/25 22:20:10 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+size_t	ft_putstr_fd(const int fd, const char *str)
 {
-	char *head;
+	size_t len;
 
-	if (!s)
-		return ;
-	head = (char *)s;
-	while (*head)
-	{
-		ft_putchar_fd(*head, fd);
-		head++;
-	}
+	len = ft_strlen(str);
+	write(fd, str, len);
+	return len;
 }
