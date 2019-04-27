@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seli <seli@student.42.fr>                  +#+  +:+       +#+         #
+#    By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/10 13:09:56 by seli              #+#    #+#              #
-#    Updated: 2019/04/10 14:34:42 by seli             ###   ########.fr        #
+#    Updated: 2019/04/26 17:41:12 by evilcat          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ LIBFT = libft
 HEADER = includes
 TEST = test
 LIBFT_HEADER = libft/includes
-SOURCES = ft_color.c ft_format_read.c ft_printf.c
+SOURCES = ft_color.c ft_formatter.c ft_helper.part1.c ft_helper.part2.c	\
+			ft_helper.part3.c ft_parser.part1.c ft_parser.part2.c		\
+			ft_printf.c ft_read_input.part1.c ft_read_input.part2.c		\
+			ft_specifier.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
 

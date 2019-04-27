@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 19:11:21 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/25 23:02:40 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 17:34:34 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ t_length_t			ft_is_two_chars_length(char c)
 int				ft_is_specifiers(char c)
 {
 	return (c == 'd' || c == 'i' || c == 'u' || c == 'o' || c == 'x' || c == 'X'
-		|| c == 'f' || c == 'F' || c == 'e' || c == 'E' || c == 'g' || c == "G"
+		|| c == 'f' || c == 'F' || c == 'e' || c == 'E' || c == 'g' || c == 'G'
 		|| c == 'a' || c == 'A' || c == 'c' || c == 's' || c == 'p' || c == 'n');
 }

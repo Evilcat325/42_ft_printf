@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 03:50:09 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 17:38:16 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct		s_state
 	va_list			*args;
 }					t_state_t;
 
-typedef char		(*t_formatter_t)(t_state_t *s);
+typedef char		*(*t_formatter_t)(t_state_t *s);
 typedef int			(*t_inputter_t)(t_state_t *s);
 
 #define TRUE 1

@@ -148,7 +148,7 @@ char *ft_spec_g(t_state_t *s)
 	s->fmt.percision -= e + 1;
 	result_f = ft_spec_f(s);
 	result_e = ft_spec_e(s);
-	if (ft_strlen(result_f) <= ft_strlen(e))
+	if (ft_strlen(result_f) <= ft_strlen(result_e))
 	{
 		free(result_e);
 		return (result_f);
@@ -169,7 +169,8 @@ char *ft_spec_c(t_state_t *s)
 {
 	char *result;
 
-	result = ft_strdup(&s->fmt.input.i);
+	result = ft_strnew(1);
+	result[0] = (char) s->fmt.input.i;
 	s->fmt.len = 1;
 	if (s->fmt.width > 1)
 	{
@@ -220,10 +221,10 @@ static t_formatter_t g_table[] = {
 	ft_spec_err,	ft_spec_z
 };
 
-t_formatter_t ft_get_formatter(char c)
+t_formatter_t *ft_get_formatter(char c)
 {
 	if ('a' <= c && c <= 'z')
-		return g_table[c - 'a'];
+		return &g_table[c - 'a'];
 	else
 		return ft_spec_err;
 }

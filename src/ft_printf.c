@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/25 23:48:59 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 17:45:16 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_dprintf(int fd, const char *str, va_list *args)
 	char		*result;
 	t_state_t	state;
 
-	state.curr = state.head = str;
+	state.curr = state.head = (char *) str;
 	state.len = 0;
 	state.args = args;
 	while (*state.curr)

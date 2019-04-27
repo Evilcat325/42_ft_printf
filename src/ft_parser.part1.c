@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/04/25 23:01:16 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 17:42:35 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_parse_flags(t_state_t *s)
 			s->fmt.flags.is_left_pad_zero = TRUE;
 }
 
-static void	ft_parse_number(t_state_t *s, int *dst)
+static void	ft_parse_number(t_state_t *s, unsigned int *dst)
 {
 	if (*s->curr == '*')
 	{

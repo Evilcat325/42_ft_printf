@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 20:06:43 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/25 23:00:39 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 17:41:58 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define FT_PARSER_H
 
 #include "ft_struct.h"
+#include "ft_helper.h"
+#include "libft.h"
 
 void	ft_parse_flags(t_state_t *s);
 void	ft_parse_width(t_state_t *s);
