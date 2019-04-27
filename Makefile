@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+         #
+#    By: seli <seli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/10 13:09:56 by seli              #+#    #+#              #
-#    Updated: 2019/04/26 20:30:54 by evilcat          ###   ########.fr        #
+#    Updated: 2019/04/27 03:54:56 by seli             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIBFT_HEADER = libft/includes
 SOURCES = ft_color.c ft_formatter.c ft_helper.part1.c ft_helper.part2.c	\
 			ft_helper.part3.c ft_parser.part1.c ft_parser.part2.c		\
 			ft_printf.c ft_read_input.part1.c ft_read_input.part2.c		\
-			ft_specifier.c
+			ft_specifier.part1.c ft_specifier.part2.c ft_specifier.part3.c \
+			ft_specifier.part4.c ft_specifier.part5.c ft_specifier.part6.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
 
@@ -36,10 +37,6 @@ object: $(SOURCES)
 	@mkdir -p obj
 	@$(CC) $(FLAGS) -I$(HEADER) -I$(LIBFT_HEADER) -c $(SOURCES)
 	@mv *.o obj
-
-test: $(NAME)
-	@$(CC) $(FLAGS) -I$(HEADER) -I$(LIBFT_HEADER) */*.c -o $(TEST) -g
-	@./$(TEST)
 
 clean:
 	@make clean -C $(LIBFT)
