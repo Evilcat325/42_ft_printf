@@ -28,20 +28,20 @@ char *ft_pad_left_zero(t_state_t *s, char *str)
 
 char *ft_pad_wid(t_state_t *s, char *str)
 {
-	size_t	len;
 	char	*result;
-	char	*head;
 	char	fill;
+	size_t	len;
 
-	len = ft_strlen(str);
-	head = result = ft_strnew(s->fmt.width - len);
+	result = ft_strnew(s->fmt.width);
 	fill = s->fmt.flags.is_left_pad_zero ? '0': ' ';
-	while (*head)
-		*head = fill;
-	if (s->fmt.flags.is_left_justify)
-		return ft_strjoin_free(str, result, TRUE, TRUE);
-	else
-		return ft_strjoin_free(result, str, TRUE, TRUE);
+	len = s->fmt.width;
+	while (len--)
+		result[len] = fill;
+	len = ft_strlen(str);
+	ft_strncpy(s->fmt.flags.is_left_justify ?
+		result : (result + s->fmt.width - len), str, len);
+	free(str);
+	return result;
 }
 
 char *ft_spec_d(t_state_t *s)
@@ -69,11 +69,13 @@ char *ft_spec_unsigned(t_state_t *s, int base, char *alt)
 	if (s->fmt.input.i == 0 && s->fmt.percision == 0)
 		result = ft_strdup("");
 	else
+	{
 		result = ft_ltoa_base(s->fmt.input.u, base);
-	if (s->fmt.percision > 0 && ft_strlen(result) < s->fmt.percision)
-		result = ft_pad_left_zero(s, result);
-	if (result[0] != '0' && s->fmt.flags.is_force_alt)
-		result = ft_strjoin_free("0", result, FALSE, TRUE);
+		if (s->fmt.percision > 0 && ft_strlen(result) < s->fmt.percision)
+			result = ft_pad_left_zero(s, result);
+		if (result[0] != '0' && s->fmt.flags.is_force_alt)
+			result = ft_strjoin_free(alt, result, FALSE, TRUE);
+	}
 	if (ft_strlen(result) < s->fmt.width)
 		result = ft_pad_wid(s, result);
 	return result;
@@ -96,7 +98,21 @@ char *ft_spec_u(t_state_t *s)
 
 char *ft_spec_x(t_state_t *s)
 {
-	return ft_spec_unsigned(s, 16, "0x");
+	char	*result;
+	char	*head;
+
+	if(s->fmt.flags.is_left_justify && s->fmt.flags.is_left_pad_zero)
+		s->fmt.flags.is_left_pad_zero = FALSE;
+	result = ft_spec_unsigned(s, 16, "0x");
+	if(s->fmt.flags.is_force_alt && s->fmt.flags.is_left_pad_zero)
+	{
+		head = result;
+		while (*head && *head != 'x')
+			head++;
+		*head = '0';
+		result[1] = 'x';
+	}
+	return (result);
 }
 
 char *ft_spec_f(t_state_t *s)
@@ -185,6 +201,8 @@ char *ft_spec_s(t_state_t *s)
 	char	*result;
 	size_t	len;
 
+	if (s->fmt.input.p == NULL)
+		s->fmt.input.p = "(null)";
 	if ((len = ft_strlen(s->fmt.input.p)) && s->fmt.percision >= 0)
 		len = len >= s->fmt.percision ? s->fmt.percision : len;
 	result = ft_strncpy(ft_strnew(len), s->fmt.input.p, len);
@@ -221,10 +239,10 @@ static t_formatter_t g_table[] = {
 	ft_spec_err,	ft_spec_z
 };
 
-t_formatter_t *ft_get_formatter(char c)
+t_formatter_t ft_get_formatter(char c)
 {
 	if ('a' <= c && c <= 'z')
-		return &g_table[c - 'a'];
+		return g_table[c - 'a'];
 	else
 		return ft_spec_err;
 }

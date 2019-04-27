@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 17:38:16 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 20:34:13 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef union		u_input
 typedef struct		s_fmt
 {
 	t_flags_t		flags;
-	unsigned int	width;
-	unsigned int	percision;
+	int				width;
+	int				percision;
 	t_length_t		length;
 	char			specifier;
 	char			*err;

@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:04:36 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 17:46:32 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 22:18:33 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ char	*ft_format(t_state_t *s)
 	if((func = ft_get_formatter(s->fmt.specifier)) == NULL)
 		return (NULL);
 	result = (*(t_formatter_t)func)(s);
+	if (s->fmt.flags.is_uppercase)
+		ft_to_upper(result);
 	return result;
 }

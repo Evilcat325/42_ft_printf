@@ -6,7 +6,7 @@
 #    By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/10 13:09:56 by seli              #+#    #+#              #
-#    Updated: 2019/04/26 20:15:38 by evilcat          ###   ########.fr        #
+#    Updated: 2019/04/26 20:30:54 by evilcat          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ object: $(SOURCES)
 	@mv *.o obj
 
 test: $(NAME)
-	@$(CC) $(FLAGS) -I$(HEADER) -I$(LIBFT_HEADER) $(NAME) test/main.c -o $(TEST) -g
+	@$(CC) $(FLAGS) -I$(HEADER) -I$(LIBFT_HEADER) */*.c -o $(TEST) -g
 	@./$(TEST)
 
 clean:

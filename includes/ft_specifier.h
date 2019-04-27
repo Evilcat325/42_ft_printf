@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:17:30 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 17:30:40 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 20:46:51 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char			*ft_spec_s(t_state_t *s);
 char			*ft_spec_p(t_state_t *s);
 char			*ft_spec_n(t_state_t *s);
 char			*ft_spec_z(t_state_t *s);
-t_formatter_t	*ft_get_formatter(char c);
+t_formatter_t	ft_get_formatter(char c);
 
 #endif

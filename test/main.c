@@ -5,7 +5,6 @@
 #define TEST(x) ret = ft_printf(x); printf("%d\n", ret)
 #define TEST2(x, y) ret = ft_printf(x, y); printf("%d\n", ret)
 
-
 int main()
 {
 	void *ptr;
@@ -22,8 +21,11 @@ int main()
 	// TEST2("test %s\n", "a string");
 	// TEST2("test %d\n", d);
 	// TEST2("test %i\n", i);
-	ft_printf("%#x\n", 42);
-	ft_printf("%#x\n", 42);
-	ft_printf("%s", "abc");
+	// ft_printf("%#x\n", 42);
+	// ft_printf("%#x\n", 42);
+	// ft_printf("%s", "abc");
+	// printf("%d\n", ft_printf("%5%"));
+	printf("%d\n", ft_printf("%.2c", NULL));
+
 	return 0;
 }

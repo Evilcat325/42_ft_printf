@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 17:45:16 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 22:34:35 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,15 @@ int	ft_dprintf(int fd, const char *str, va_list *args)
 			if (!ft_valid_fmt(&state))
 				return -1;
 			result = ft_format(&state);
-			state.len += ft_putstr_fd(result, fd);
+			if (!state.fmt.len)
+				state.len += ft_putstr_fd(result, fd);
+			else
+				state.len += write(fd, result, state.fmt.len);
 			free(result);
 		}
-	return state.curr - state.head;
+	return state.len;
 }
+
 
 int ft_printf(const char *str, ...)
 {

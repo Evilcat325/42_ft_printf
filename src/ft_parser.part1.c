@@ -6,7 +6,7 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 17:42:35 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 22:28:42 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_parse_flags(t_state_t *s)
 
 	while (ft_is_flag(c = *s->curr) && s->curr++)
 		if (c == '-')
-			s->fmt.flags.is_force_sign= TRUE;
+			s->fmt.flags.is_left_justify = TRUE;
 		else if (c == '+')
 			s->fmt.flags.is_force_sign = TRUE;
 		else if (c == ' ')
@@ -29,11 +29,11 @@ void	ft_parse_flags(t_state_t *s)
 			s->fmt.flags.is_left_pad_zero = TRUE;
 }
 
-static void	ft_parse_number(t_state_t *s, unsigned int *dst)
+static void	ft_parse_number(t_state_t *s, int *dst)
 {
 	if (*s->curr == '*')
 	{
-		*dst = va_arg(*s->args, unsigned int);
+		*dst = va_arg(*s->args, int);
 		s->curr++;
 	} else if (!ft_isdigit(*s->curr))
 		return ;
@@ -50,8 +50,10 @@ void	ft_parse_width(t_state_t *s)
 void	ft_parse_precision(t_state_t *s)
 {
 	s->fmt.percision = -1;
-	if (*(s->curr)++ != '.')
+	if (*s->curr != '.')
 		return;
+	s->fmt.percision = 0;
+	s->curr++;
 	ft_parse_number(s, &s->fmt.percision);
 }
 
