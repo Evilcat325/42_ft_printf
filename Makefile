@@ -6,7 +6,7 @@
 #    By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/10 13:09:56 by seli              #+#    #+#              #
-#    Updated: 2019/04/26 17:50:55 by evilcat          ###   ########.fr        #
+#    Updated: 2019/04/26 20:15:38 by evilcat          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft
 HEADER = includes
-TEST = test
+TEST = test.out
 LIBFT_HEADER = libft/includes
 SOURCES = ft_color.c ft_formatter.c ft_helper.part1.c ft_helper.part2.c	\
 			ft_helper.part3.c ft_parser.part1.c ft_parser.part2.c		\
@@ -38,7 +38,7 @@ object: $(SOURCES)
 	@mv *.o obj
 
 test: $(NAME)
-	@$(CC) $(FLAGS) -I(HEADER) -L$(NAME) test.c -o $(TEST)
+	@$(CC) $(FLAGS) -I$(HEADER) -I$(LIBFT_HEADER) $(NAME) test/main.c -o $(TEST) -g
 	@./$(TEST)
 
 clean:
