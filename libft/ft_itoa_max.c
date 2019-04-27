@@ -6,13 +6,13 @@
 /*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 02:39:16 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 02:43:18 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/26 20:05:30 by evilcat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(intmax_t n)
+char	*ft_itoa_max(intmax_t n)
 {
 	intmax_t	nbr;
 	intmax_t	d;
