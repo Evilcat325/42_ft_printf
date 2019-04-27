@@ -6,12 +6,13 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:53:47 by seli              #+#    #+#             */
-/*   Updated: 2019/04/27 03:50:18 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 04:09:03 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define PAGE_SIZE 4096
 
 # include <unistd.h>
 # include <string.h>
