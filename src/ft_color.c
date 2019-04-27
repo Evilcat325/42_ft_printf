@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_color.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/27 03:16:46 by seli              #+#    #+#             */
+/*   Updated: 2019/04/27 03:16:46 by seli             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #define FOREGROUND_COL_BLACK            "30"
 #define FOREGROUND_COL_RED              "31"
 #define FOREGROUND_COL_GREEN            "32"
@@ -19,7 +31,7 @@
 #define SHELL_COLOR_ESCAPE_SEQ(X) "\x1b["X"m"
 #define SHELL_FORMAT_RESET  ANSI_COLOR_ESCAPE_SEQ(GEN_FORMAT_RESET)
 
-char *color(char *str)
+char	*color(char *str)
 {
-	return SHELL_COLOR_ESCAPE_SEQ(BACKGROUND_COL_BLACK);
+	return (SHELL_COLOR_ESCAPE_SEQ(BACKGROUND_COL_BLACK));
 }

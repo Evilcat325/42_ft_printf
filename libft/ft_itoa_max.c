@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_max.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/26 02:39:16 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 20:05:30 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/27 03:18:04 by seli              #+#    #+#             */
+/*   Updated: 2019/04/27 03:18:05 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@ char	*ft_itoa_max(intmax_t n)
 	intmax_t	d;
 	size_t		i;
 	char		*str;
+	int			overflow;
 
+	overflow = n == INTMAX_MIN ? 1 : 0;
+	n = n == INTMAX_MIN ? n + 1: n;
 	nbr = n < 0 ? -(intmax_t)n : n;
 	d = 1;
 	i = 1;
 	while (nbr / d >= 10 && (d *= 10))
 		i++;
-	if (!(str = ft_strnew(i + (n < 0 ? 1 : 0))))
+	if (!(str = ft_strnew(i)))
 		return (NULL);
 	i = 0;
-	if (n < 0)
-		str[i++] = '-';
 	while (d != 0)
 	{
-		str[i++] = nbr / d % 10 + '0';
+		str[i++] = ((nbr / d) % 10) + '0' + (d == 1 ? overflow : 0);
 		d /= 10;
 	}
 	return (str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 01:44:15 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 22:34:35 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/27 03:17:27 by seli              #+#    #+#             */
+/*   Updated: 2019/04/27 03:17:27 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_valid_fmt(t_state_t *s)
 {
 	s->curr++;
 	ft_parse(s);
-	return s->fmt.err ? FALSE : TRUE;
+	return (s->fmt.err ? FALSE : TRUE);
 }
 
 int	ft_dprintf(int fd, const char *str, va_list *args)
@@ -24,7 +24,8 @@ int	ft_dprintf(int fd, const char *str, va_list *args)
 	char		*result;
 	t_state_t	state;
 
-	state.curr = state.head = (char *) str;
+	state.head = (char *)str;
+	state.curr = state.head;
 	state.len = 0;
 	state.args = args;
 	while (*state.curr)
@@ -34,7 +35,7 @@ int	ft_dprintf(int fd, const char *str, va_list *args)
 		{
 			ft_bzero(&state.fmt, sizeof(state.fmt));
 			if (!ft_valid_fmt(&state))
-				return -1;
+				return (-1);
 			result = ft_format(&state);
 			if (!state.fmt.len)
 				state.len += ft_putstr_fd(result, fd);
@@ -42,19 +43,18 @@ int	ft_dprintf(int fd, const char *str, va_list *args)
 				state.len += write(fd, result, state.fmt.len);
 			free(result);
 		}
-	return state.len;
+	return (state.len);
 }
 
-
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		result;
 
 	if (!str)
-		return 0;
+		return (0);
 	va_start(args, str);
 	result = ft_dprintf(STDOUT_FILENO, str, &args);
 	va_end(args);
-	return result;
+	return (result);
 }

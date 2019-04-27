@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.part2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 21:34:24 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 22:20:45 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/27 03:17:21 by seli              #+#    #+#             */
+/*   Updated: 2019/04/27 03:17:23 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_parse_specifiers(t_state_t *s)
 	}
 	if (s->fmt.specifier == '%')
 		s->fmt.specifier = 'z';
+	if (s->fmt.specifier == 'u' && s->fmt.flags.is_uppercase)
+		s->fmt.length = l;
 }
 
 void	ft_parse(t_state_t *s)

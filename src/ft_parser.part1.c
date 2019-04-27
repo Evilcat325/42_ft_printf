@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.part1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/27 02:55:34 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 22:28:42 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/27 03:17:14 by seli              #+#    #+#             */
+/*   Updated: 2019/04/27 03:17:14 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-void	ft_parse_flags(t_state_t *s)
+void			ft_parse_flags(t_state_t *s)
 {
 	char c;
 
@@ -29,31 +29,31 @@ void	ft_parse_flags(t_state_t *s)
 			s->fmt.flags.is_left_pad_zero = TRUE;
 }
 
-static void	ft_parse_number(t_state_t *s, int *dst)
+static void		ft_parse_number(t_state_t *s, int *dst)
 {
 	if (*s->curr == '*')
 	{
 		*dst = va_arg(*s->args, int);
 		s->curr++;
-	} else if (!ft_isdigit(*s->curr))
+	}
+	else if (!ft_isdigit(*s->curr))
 		return ;
 	else
 		while (ft_isdigit(*s->curr))
 			*dst = *dst * 10 + *s->curr++ - '0';
 }
 
-void	ft_parse_width(t_state_t *s)
+void			ft_parse_width(t_state_t *s)
 {
 	ft_parse_number(s, &s->fmt.width);
 }
 
-void	ft_parse_precision(t_state_t *s)
+void			ft_parse_precision(t_state_t *s)
 {
 	s->fmt.percision = -1;
 	if (*s->curr != '.')
-		return;
+		return ;
 	s->fmt.percision = 0;
 	s->curr++;
 	ft_parse_number(s, &s->fmt.percision);
 }
-
