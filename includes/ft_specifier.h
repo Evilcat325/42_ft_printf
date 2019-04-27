@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_specifier.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 23:17:30 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/27 03:09:42 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/27 03:52:34 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SPECIFIER_H
-#define FT_SPECIFIER_H
-
-#include "ft_struct.h"
-#include "libft.h"
-#define ft_spec_err NULL
-#define ft_spec_i ft_spec_d
+# define FT_SPECIFIER_H
+# include "ft_struct.h"
+# include "libft.h"
+# define FT_SPEC_ERR NULL
+# define FT_SPEC_I ft_spec_d
 
 char			*ft_pad_wid(t_state_t *s, char *str);
 char			*ft_pad_precision(t_state_t *s, char *str);

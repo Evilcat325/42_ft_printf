@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_helper.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 19:06:06 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 17:28:46 by evilcat          ###   ########.fr       */
+/*   Created: 2019/04/27 03:50:09 by seli              #+#    #+#             */
+/*   Updated: 2019/04/27 03:50:11 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_HELPER_H
-#define FT_HELPER_H
+# define FT_HELPER_H
 
-#include "ft_struct.h"
+# include "ft_struct.h"
 
 int				ft_is_flag(char c);
 t_length_t		ft_is_length(char c);

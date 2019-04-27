@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_specifier.part1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 03:10:07 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/27 03:11:02 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/27 03:43:17 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_pad_wid(t_state_t *s, char *str)
 	size_t	len;
 
 	result = ft_strnew(s->fmt.width);
-	fill = s->fmt.flags.is_left_pad_zero ? '0': ' ';
+	fill = (s->fmt.flags.is_left_pad_zero ? '0' : ' ');
 	len = s->fmt.width;
 	while (len--)
 		result[len] = fill;
@@ -27,7 +27,7 @@ char	*ft_pad_wid(t_state_t *s, char *str)
 	ft_strncpy(s->fmt.flags.is_left_justify ?
 		result : (result + s->fmt.width - len), str, len);
 	free(str);
-	return result;
+	return (result);
 }
 
 char	*ft_pad_precision(t_state_t *s, char *str)
@@ -43,7 +43,7 @@ char	*ft_pad_precision(t_state_t *s, char *str)
 	ft_strncpy(result + s->fmt.percision - len, str, len);
 	free(str);
 	s->fmt.flags.is_left_pad_zero = FALSE;
-	return result;
+	return (result);
 }
 
 char	*ft_pad_wid_char(t_state_t *s, char c)
@@ -57,5 +57,5 @@ char	*ft_pad_wid_char(t_state_t *s, char c)
 		result[len] = ' ';
 	result[s->fmt.flags.is_left_justify ?
 		0 : (0 + s->fmt.width - 1)] = c;
-	return result;
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 03:17:40 by seli              #+#    #+#             */
-/*   Updated: 2019/04/27 03:17:40 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 03:50:48 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int						ft_input_z(t_state_t *s)
 
 static t_inputter_t		g_table[] = {
 	ft_input_float, ft_input_unsigned, ft_input_c, ft_input_signed,
-	ft_input_float, ft_input_float, ft_input_float, ft_input_err,
-	ft_input_signed, ft_input_err, ft_input_err, ft_input_err,
-	ft_input_err, ft_input_n, ft_input_unsigned, ft_input_p,
-	ft_input_err, ft_input_err, ft_input_s, ft_input_err,
-	ft_input_unsigned, ft_input_err, ft_input_err, ft_input_unsigned,
-	ft_input_err, ft_input_z
+	ft_input_float, ft_input_float, ft_input_float, FT_INPUT_ERR,
+	ft_input_signed, FT_INPUT_ERR, FT_INPUT_ERR, FT_INPUT_ERR,
+	FT_INPUT_ERR, ft_input_n, ft_input_unsigned, ft_input_p,
+	FT_INPUT_ERR, FT_INPUT_ERR, ft_input_s, FT_INPUT_ERR,
+	ft_input_unsigned, FT_INPUT_ERR, FT_INPUT_ERR, ft_input_unsigned,
+	FT_INPUT_ERR, ft_input_z
 };
 
 t_inputter_t			ft_get_inputter(char c)

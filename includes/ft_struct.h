@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_struct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/26 20:34:13 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/27 03:51:46 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRUCT_H
-#define FT_STRUCT_H
+# define FT_STRUCT_H
 
-#include <stdarg.h>
-#include <stddef.h>
-#include <wchar.h>
-#include <stdint.h>
+# include <stdarg.h>
+# include <stddef.h>
+# include <wchar.h>
+# include <stdint.h>
 
 typedef struct		s_flags
 {
@@ -73,10 +73,10 @@ typedef struct		s_state
 typedef char		*(*t_formatter_t)(t_state_t *s);
 typedef int			(*t_inputter_t)(t_state_t *s);
 
-#define TRUE 1
-#define FALSE 0
-#define ERR_INVALID_SPECIFIER "Invalid Specifier"
-#define ERR_INVALID_SPECIFIER_LENGTH "Invalid Specifier Length"
-#define LOWWER 0x20
+# define TRUE 1
+# define FALSE 0
+# define ERR_INVALID_SPECIFIER "Invalid Specifier"
+# define ERR_INVALID_SPECIFIER_LENGTH "Invalid Specifier Length"
+# define LOWWER 0x20
 
 #endif

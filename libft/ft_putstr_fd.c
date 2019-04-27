@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 03:18:35 by seli              #+#    #+#             */
-/*   Updated: 2019/04/27 03:18:36 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 03:47:08 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ size_t	ft_putstr_fd(const char *str, const int fd)
 
 	len = ft_strlen(str);
 	write(fd, str, len);
-	return len;
+	return (len);
 }

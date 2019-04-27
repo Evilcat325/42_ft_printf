@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 03:18:04 by seli              #+#    #+#             */
-/*   Updated: 2019/04/27 03:18:05 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 03:47:26 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_itoa_max(intmax_t n)
 	int			overflow;
 
 	overflow = n == INTMAX_MIN ? 1 : 0;
-	n = n == INTMAX_MIN ? n + 1: n;
+	n = n == INTMAX_MIN ? n + 1 : n;
 	nbr = n < 0 ? -(intmax_t)n : n;
 	d = 1;
 	i = 1;
