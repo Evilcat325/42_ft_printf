@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evilcat <evilcat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:52:07 by seli              #+#    #+#             */
-/*   Updated: 2019/04/26 17:52:25 by evilcat          ###   ########.fr       */
+/*   Updated: 2019/04/27 19:55:24 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ size_t				ft_putstr_fd_end(char **str, const int fd, char end);
 void				ft_to_upper(char *str);
 char				*ft_format_sci(int e);
 char				*ft_itoa_max(intmax_t n);
+char				*ft_strncpy_force(char *dst, const char *src, size_t len);
 
 #endif

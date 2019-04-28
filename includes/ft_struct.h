@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:52:10 by evilcat           #+#    #+#             */
-/*   Updated: 2019/04/27 03:51:46 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 19:31:36 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct		s_state
 	char			*curr;
 	size_t			len;
 	va_list			*args;
+	char			*buffer;
 }					t_state_t;
 
 typedef char		*(*t_formatter_t)(t_state_t *s);

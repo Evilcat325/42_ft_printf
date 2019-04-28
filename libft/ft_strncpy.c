@@ -6,7 +6,7 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 00:29:21 by seli              #+#    #+#             */
-/*   Updated: 2019/01/20 18:15:05 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 19:57:21 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 			dst[i] = src[i];
 		else
 			dst[i] = 0;
+		i++;
+	}
+	return (dst);
+}
+
+char	*ft_strncpy_force(char *dst, const char *src, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
 		i++;
 	}
 	return (dst);

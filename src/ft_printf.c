@@ -6,18 +6,11 @@
 /*   By: seli <seli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 03:17:27 by seli              #+#    #+#             */
-/*   Updated: 2019/04/27 04:22:47 by seli             ###   ########.fr       */
+/*   Updated: 2019/04/27 20:11:22 by seli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int				ft_valid_fmt(t_state_t *s)
-{
-	s->curr++;
-	ft_parse(s);
-	return (s->fmt.err ? FALSE : TRUE);
-}
 
 static void		ft_init_state(t_state_t *s, const char *str, va_list *args)
 {
@@ -25,41 +18,63 @@ static void		ft_init_state(t_state_t *s, const char *str, va_list *args)
 	s->curr = s->head;
 	s->len = 0;
 	s->args = args;
+	s->buffer = ft_strnew(0);
 }
 
-static void		ft_normal_print(t_state_t *s, char buffer[PAGE_SIZE])
+static void		ft_normal_print(t_state_t *s)
 {
 	size_t		len;
+	char		*dup;
 
 	len = ft_strlen_end(s->curr, '%');
-	ft_strncpy(&buffer[s->len], s->curr, len);
+	dup = ft_strnew(s->len + len);
+	ft_strncpy_force(dup, s->buffer, s->len);
+	ft_strncpy_force(dup + s->len, s->curr, len);
+	free(s->buffer);
+	s->buffer = dup;
 	s->curr += len;
 	s->len += len;
 }
 
+static int		ft_format_print(t_state_t *s)
+{
+	size_t		len;
+	int			i;
+	char		*tmp;
+	char		*dup;
+
+	ft_bzero(&s->fmt, sizeof(s->fmt));
+	s->curr++;
+	ft_parse(s);
+	if (s->fmt.err)
+		return (FALSE);
+	tmp = ft_format(s);
+	len = (s->fmt.len ? s->fmt.len : ft_strlen(tmp));
+	dup = ft_strnew(s->len + len);
+	ft_strncpy_force(dup, s->buffer, s->len);
+	ft_strncpy_force(dup + s->len, tmp, len);
+	free(tmp);
+	free(s->buffer);
+	s->buffer = dup;
+	s->len += len;
+	return (TRUE);
+}
+
 int				ft_dprintf(int fd, const char *str, va_list *args)
 {
-	char		*result;
 	t_state_t	state;
-	size_t		len;
-	static char	buffer[PAGE_SIZE];
 
 	ft_init_state(&state, str, args);
 	while (*state.curr)
 		if (*state.curr != '%')
-			ft_normal_print(&state, buffer);
-		else
+			ft_normal_print(&state);
+		else if (ft_format_print(&state) == FALSE)
 		{
-			ft_bzero(&state.fmt, sizeof(state.fmt));
-			if (!ft_valid_fmt(&state))
-				return (-1);
-			result = ft_format(&state);
-			len = (state.fmt.len ? state.fmt.len : ft_strlen(result));
-			ft_strncpy(&buffer[state.len], result, len);
-			state.len += len;
-			free(result);
+			free(state.buffer);
+			return (-1);
 		}
-	write(fd, buffer, state.len);
+	write(fd, state.buffer, state.len);
+	free(state.buffer);
 	return (state.len);
 }
 
